@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/movietinder/static/css/main.6736a13e.css",
-    "main.js": "/movietinder/static/js/main.8d300814.js",
-    "static/js/787.40864fde.chunk.js": "/movietinder/static/js/787.40864fde.chunk.js",
-    "index.html": "/movietinder/index.html",
-    "main.6736a13e.css.map": "/movietinder/static/css/main.6736a13e.css.map",
-    "main.8d300814.js.map": "/movietinder/static/js/main.8d300814.js.map",
-    "787.40864fde.chunk.js.map": "/movietinder/static/js/787.40864fde.chunk.js.map"
+    "main.css": "/static/css/main.6736a13e.css",
+    "main.js": "/static/js/main.9745cb92.js",
+    "static/js/787.40864fde.chunk.js": "/static/js/787.40864fde.chunk.js",
+    "index.html": "/index.html",
+    "main.6736a13e.css.map": "/static/css/main.6736a13e.css.map",
+    "main.9745cb92.js.map": "/static/js/main.9745cb92.js.map",
+    "787.40864fde.chunk.js.map": "/static/js/787.40864fde.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6736a13e.css",
-    "static/js/main.8d300814.js"
+    "static/js/main.9745cb92.js"
   ]
 }
