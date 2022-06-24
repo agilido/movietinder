@@ -2,7 +2,7 @@
   "homepage": "https://veres7.github.io/",
   "name": "movietinder",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
