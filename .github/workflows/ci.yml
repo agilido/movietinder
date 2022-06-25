@@ -38,3 +38,13 @@ jobs:
         branch: gh-pages
         folder: build
         
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: Super-Linter
+      uses: github/super-linter@v4.9.4
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
