@@ -34,10 +34,7 @@
       "react-app",
       "react-app/jest"
     ],
-    "ignorePatterns": ['*.ts'],
-    "rules": {
-
-    }
+    "ignorePatterns": ["*.ts"]
   },
   "browserslist": {
     "production": [
