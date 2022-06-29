@@ -2,10 +2,12 @@ import React, { useState, useMemo, useCallback } from 'react';
 import Card from "./Card";
 import axios from "axios";
 
-import { Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { Check, Close } from '@mui/icons-material';
 
 import { IFilms } from "../interfaces/IData";
+
+import FilmsJson from "../data/films.json"
 
 const config = {
     headers: {
@@ -15,46 +17,23 @@ const config = {
 };
 
 function Main() {
-    const [films, setFilms] = useState<Array<IFilms>>([
-        {
-            id: "1and3011",
-            imageURL: `https://images-na.ssl-images-amazon.com/images/M/MV5BMTUzNTE2NTkzMV5BMl5BanBnXkFtZTgwMDAzOTUyMDI@._V1_SY1000_CR0,0,674,1000_AL_.jpg`,
-            title: "Inferno",
-            summary: "Lorem ipsum...",
-            rating: 5.3
-        },
-        {
-            id: "2301abc",
-            imageURL: `https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg`,
-            title: "Star Wars: Episode VII - The Force Awakens",
-            summary: "Lorem ipsum...",
-            rating: 8.2
-        },
-        {
-            id: "bro2011",
-            imageURL: `https://m.media-amazon.com/images/M/MV5BNjhlZDRlN2UtN2E0MS00N2I4LTgxOGItMWYxZDU4ODY1ZWFjXkEyXkFqcGdeQXVyMTYzMDM0NTU@._V1_.jpg`,
-            title: "Interstellar",
-            summary: "Lorem ipsum...",
-            rating: 10
-        }
-    ]);
-    const [currentIndex, setCurrentIndex] = useState<number>(films.length - 1);
+    const [currentIndex, setCurrentIndex] = useState<number>(FilmsJson.length - 1);
 
     const childRefs: any = useMemo(
         () =>
-            Array(films.length)
+            Array(FilmsJson.length)
                 .fill(0)
                 .map((i) => React.createRef()),
-        [films.length]
+        [FilmsJson.length]
     )
 
     const canSwipe = currentIndex >= 0
 
     const swipe = useCallback(async (dir: string, id: string) => {
-        if ((currentIndex >= 0) && currentIndex < films.length) {
+        if ((currentIndex >= 0) && currentIndex < FilmsJson.length) {
             await childRefs[currentIndex].current.swipe(dir)
         }
-    }, [currentIndex, childRefs, films]);
+    }, [currentIndex, childRefs, FilmsJson]);
 
     const updateCurrentIndex = useCallback(() => {
         setCurrentIndex(prev => prev - 1)
@@ -113,12 +92,17 @@ function Main() {
     }, [])
 
     return (
-        <div className="container">
-            {films.map((filmData: IFilms, index: number) => (
+        <Grid container sx={{
+            marginTop: { xs: '5vh', md: '12vh' },
+            display: 'flexbox',
+            justifyContent: 'center',
+            position: 'relative'
+        }}>
+            {FilmsJson.map((filmData: IFilms, index: number) => (
                 <Card
                     key={filmData.id}
                     film={filmData}
-                    filmArr={films}
+                    filmArr={FilmsJson}
                     fref={childRefs[index]}
                     index={index}
                     sendReject={sendReject}
@@ -127,13 +111,20 @@ function Main() {
                 />
             ))}
             {canSwipe &&
-                <div className="buttons">
+                <Grid container
+                    sx={{
+                        marginTop: { xs: '75vh', md: '70vh' },
+                        display: 'flexbox',
+                        width: { xs: '40vh', md: '30vh' },
+                        justifyContent: 'space-between',
+                    }}
+                >
                     <Button
                         variant="contained"
                         color="success"
                         size="small"
                         startIcon={<Check />}
-                        onClick={() => acceptSwipe(films[currentIndex])}
+                        onClick={() => acceptSwipe(FilmsJson[currentIndex])}
                     >
                         Accept
                     </Button>
@@ -142,13 +133,13 @@ function Main() {
                         color="error"
                         size="small"
                         endIcon={<Close />}
-                        onClick={() => rejectSwipe(films[currentIndex])}
+                        onClick={() => rejectSwipe(FilmsJson[currentIndex])}
                     >
                         Reject
                     </Button>
-                </div>
+                </Grid>
             }
-        </div>
+        </Grid>
     )
 }
 
